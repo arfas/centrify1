@@ -1,13 +1,11 @@
-# FastAPI Reddit OAuth Example
+# Spring Boot Reddit OAuth Example
 
-This project demonstrates how to implement Reddit OAuth login in a FastAPI backend.
+This project demonstrates how to implement Reddit OAuth login in a Spring Boot backend.
 
 ## Setup
 
 1.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
+    This project uses Maven, so you don't need to install dependencies manually. They will be downloaded when you build the project.
 
 2.  **Create a Reddit OAuth2 application:**
     - Go to [Reddit's app preferences](https://www.reddit.com/prefs/apps).
@@ -17,21 +15,22 @@ This project demonstrates how to implement Reddit OAuth login in a FastAPI backe
         - **type:** Select "web app".
         - **description:** (Optional)
         - **about url:** (Optional)
-        - **redirect uri:** `http://127.0.0.1:8000/callback`
+        - **redirect uri:** `http://127.0.0.1:8080/login/oauth2/code/reddit`
     - Click "create app". You will get a client ID and client secret.
 
 3.  **Configure environment variables:**
-    - Rename `.env.example` to `.env`.
     - Open the `.env` file and replace the placeholder values with your Reddit client ID and client secret.
 
 ## Running the application
 
 ```bash
-uvicorn main:app --reload
+mvn spring-boot:run
 ```
+
+The application will be available at `http://127.0.0.1:8080`.
 
 ## Endpoints
 
--   `/login`: Initiates the Reddit OAuth2 login flow.
--   `/callback`: Handles the callback from Reddit after authorization.
+-   `/`: The home page with a link to log in.
+-   `/login`: Initiates the Reddit OAuth2 login flow (handled by Spring Security).
 -   `/my-posts`: Fetches the authenticated user's submitted posts from Reddit.
