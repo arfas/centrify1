@@ -28,6 +28,7 @@ public class RedditService {
 
         OAuth2AccessToken accessToken = authorizedClient.getAccessToken();
         String username = principal.getAttribute("name");
+        System.out.println("accessToken = " + accessToken.getTokenValue());
 
         return this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/user/{username}/submitted").build(username))
